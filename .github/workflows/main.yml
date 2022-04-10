@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DOCKER_USER: dgg32
-  DOCKER_IMAGE: gc_biopython_docker
-
 jobs:
 
   build:
@@ -33,13 +29,13 @@ jobs:
 
     - name: docker login
       env:
-        DOCKER_USER: $DOCKER_USER
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_IMAGE:$(date +%s)
+      run: docker build . --file Dockerfile --tag dgg32/gc_biopython_docker:$(date +%s)
 
     - name: Docker Push
-      run: docker push $DOCKER_USER/$DOCKER_IMAGE
+      run: docker push dgg32/gc_biopython_docker
