@@ -38,4 +38,4 @@ jobs:
       run: docker build . --file Dockerfile --tag dgg32/gc_biopython_docker:$(date +%s)
 
     - name: Docker Push
-      run: docker push dgg32/gc_biopython_docker:$(date +%s)
+      run: docker push ${{secrets.DOCKER_USER}}/gc_biopython_docker
