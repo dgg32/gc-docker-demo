@@ -5,3 +5,4 @@ def test_calculate_gc_1():
 
 def test_calculate_gc_2():
     assert gc_bash_translation.calculate_gc("ATGCAT") == 33
+
